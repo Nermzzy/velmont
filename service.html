@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth" theme="light">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services | Velmont Energy</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js" async></script>
+  
+  <!-- Alpine.js -->
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/static/style.css" />
+  <link rel="stylesheet" href="/static/animation.css" />
+  <link rel="stylesheet" href="/static/responsive.css" />
+</head>
+
+<body class="bg-gray-100 text-gray-900 dark:bg-black dark:text-white font-display overflow-x-hidden">
+  
+  <!-- Navbar -->
+  
+  <!-- Navbar -->
+  <nav class="bg-gray-100 relative shadow-md w-full z-50" x-data="{ open: false }">
+    <div class="container mx-auto px-4 py- flex justify-between items-center">
+      <a href="index.html" class="flex items-center">
+        <img src="/assets/logog.png" alt="Velmont" class="h-20 mr-2" />
+        <!-- <span class="text-2xl font-bold text-gr">Velmont</span> -->
+      </a>
+
+      <!-- Hamburger Icon -->
+      <button class="md:hidden flex flex-col justify-center items-center w-10 h-10" @click="open = !open"
+        aria-label="Toggle menu">
+        <span class="block w-7 h-1 bg-gray-900 mb-1 rounded transition-all duration-300"
+          :class="{'rotate-45 translate-y-2': open}"></span>
+        <span class="block w-6 h-1 bg-gray-900 mb-1 rounded transition-all duration-300"
+          :class="{'opacity-0': open}"></span>
+        <span class="block w-7 h-1 bg-gray-900 rounded transition-all duration-300"
+          :class="{'-rotate-45 -translate-y-2': open}"></span>
+      </button>
+
+      <!-- Desktop Menu -->
+      <ul class="hidden md:flex space-x-6 flex font-medium items-center w-full h-full justify-end">
+        <li><a href="index.html" class="transition active md-nav-item py-6 px-3">Home</a></li>
+        <li><a href="about.html" class="transition duration-300 md-nav-item py-6 px-3 active-m">About</a></li>
+        <li><a href="services.html" class="transition duration-200 md-nav-item py-6 px-3">Services</a></li>
+        <li><a href="contact.html" class="transition duration-200 md-nav-item py-6 px-3">Contact</a></li>
+        <li><a href="gallery.html" class="transition duration-200 md-nav-item py-6 px-3">Gallery</a></li>
+      </ul>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="absolute md:hidden top-full left-0 right-0" x-show="open"
+      x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 -translate-y-4"
+      x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-300"
+      x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 -translate-y-4"
+      @click.away="open = false">
+      <ul class="bg-white px-4 pb-6 py-4 space-y-2 shadow-md font-medium w-full z-50">
+        <li>
+          <a href="index.html" class="block w-full px-4 py-2 md-nav-item transition-all duration-300 rounded">
+            Home
+          </a>
+        </li>
+        <li>
+          <a href="about.html" class="block w-full px-4 py-2 md-nav-item transition-all duration-300 rounded">
+            About
+          </a>
+        </li>
+        <li>
+          <a href="service.html" class="block w-full px-4 py-2 md-nav-item transition-all duration-300 rounded active-m">
+            Services
+          </a>
+        </li>
+        <li>
+          <a href="contact.html" class="block w-full px-4 py-2 md-nav-item transition-all duration-300 rounded">
+            Contact
+          </a>
+        </li>
+        <li>
+          <a href="gallery.html" class="block w-full px-4 py-2 md-nav-item transition-all duration-300 rounded">
+            Gallery
+          </a>
+        </li>
+      </ul>
+    </div>
+
+  </nav>
+  
+  <!-- Hero Section -->
+  <section class="relative bg-green-700 text-white py-20 overflow-hidden">
+    <div class="container mx-auto px-6 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">Our Service Portfolio</h1>
+      <p class="text-lg md:text-xl max-w-2xl mx-auto">At Velmont Energy, we deliver end-to-end solutions across energy, mining, and mineral sectors to drive sustainable growth and community empowerment.</p>
+    </div>
+    <div class="absolute bottom-0 left-0 w-full h-1 bg-green-500 animate-pulse">
+      <img src="/assets/gallery5" alt="" />
+    </div>
+  </section>
+  
+  <!-- Energy Services -->
+  <section class="container mx-auto px-6 py-16">
+    <h2 class="text-3xl font-bold mb-10 underline underline-offscan-4 decoration-2 text-center">Energy Solutions</h2>
+    <div class="grid md:grid-cols-2 gap-10">
+      
+      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 fade-up">
+        <h3 class="text-xl font-semibold mb-4 text-green-700">Upstream Operations</h3>
+        <p class="text-gray-700 dark:text-gray-300 mb-4">Velmont Energy provides comprehensive upstream services that ensure efficient exploration and production:</p>
+        <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
+          <li>Geological & Seismic Surveys for optimal reserve analysis</li>
+          <li>Advanced drilling and well completion technologies</li>
+          <li>Reservoir management for maximum yield sustainability</li>
+          <li>Enhanced Oil Recovery (EOR) techniques for mature fields</li>
+          <li>Asset integrity management ensuring operational safety</li>
+        </ul>
+      </div>
+      
+      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 fade-up">
+        <h3 class="text-xl font-semibold mb-4 text-green-700">Downstream Operations</h3>
+        <p class="text-gray-700 dark:text-gray-300 mb-4">We deliver strategic downstream services to ensure value creation across the supply chain:</p>
+        <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
+          <li>Refining & processing with state-of-the-art facilities</li>
+          <li>Secure storage, transportation, and distribution networks</li>
+          <li>Export logistics management with global compliance standards</li>
+          <li>Retail and wholesale fuel distribution to power industries</li>
+        </ul>
+      </div>
+      
+    </div>
+  </section>
+  
+  <!-- Mining & Minerals -->
+  <section class="bg-gray-50 dark:bg-gray-900 py-16 px-6">
+    <div class="container mx-auto">
+      <h2 class="text-3xl font-bold mb-10 underline-custom text-center">Mining & Minerals</h2>
+      <div class="grid md:grid-cols-3 gap-10">
+        
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 fade-up">
+          <h3 class="text-xl font-semibold mb-4 text-green-700">Gold & Diamond Mining</h3>
+          <p class="text-gray-700 dark:text-gray-300">We explore and mine high-grade gold and diamond deposits using ethical and sustainable methodologies to create lasting economic impact in host communities.</p>
+        </div>
+        
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 fade-up">
+          <h3 class="text-xl font-semibold mb-4 text-green-700">Lithium & Rare Earth Minerals</h3>
+          <p class="text-gray-700 dark:text-gray-300">Our lithium and rare earth minerals division is dedicated to supplying critical inputs for Africa’s emerging renewable energy and tech manufacturing industries.</p>
+        </div>
+        
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 fade-up">
+          <h3 class="text-xl font-semibold mb-4 text-green-700">Solid Mineral Trading</h3>
+          <p class="text-gray-700 dark:text-gray-300">We engage in legal, certified buying and global export of precious and industrial stones, complying with international standards to ensure trade transparency.</p>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+  
+  <!-- Sustainability & Community Impact -->
+  <section class="container mx-auto px-6 py-16">
+    <h2 class="text-3xl font-bold mb-10 underline-custom text-center">Sustainability & Community Empowerment</h2>
+    <div class="max-w-4xl mx-auto text-center text-gray-700 dark:text-gray-300 fade-up">
+      <p class="mb-6">We integrate environmental stewardship and community welfare into every project. Our operations include land rehabilitation, job creation, skills development, and local business empowerment, aligned with Nigeria’s Mining Act and global ESG standards.</p>
+      <p>Through strategic partnerships, we deploy cutting-edge technologies, including AI and geospatial analytics, to maximise operational efficiency while protecting natural habitats and empowering the communities we serve.</p>
+    </div>
+  </section>
+  
+  <!-- Call to Action -->
+  <section class="bg-gray-600 text-white py-12 text-center">
+    <h2 class="text-2xl font-bold mb-4">Partner with Velmont Energy</h2>
+    <p class="mb-6 max-w-2xl mx-auto">Contact us today to leverage our expertise in energy, mining, and minerals to power your projects sustainably and profitably.</p>
+    <a href="contact.html" class="inline-block px-8 py-3 bg-white text-green-700 rounded shadow hover:bg-gray-100 transition">Get in Touch</a>
+  </section>
+  
+  <!-- Footer -->
+  <!-- Copy your existing footer here -->
+  
+  <script src="/animation.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>

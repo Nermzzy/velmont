@@ -1,0 +1,95 @@
+
+
+
+.hamburger span {
+  transition: all 0.3s ease;
+}
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translateY(8px);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-8px);
+}
+
+
+/* hero animation */
+@keyframes slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.animate-slide-in-left {
+  animation: slide-in-left 1s ease-in;
+}
+
+
+
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.animate-slide-in-right {
+  animation: slide-in-right 1s ease-in-out forwards;
+}
+
+
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-slide-up {
+  animation: slide-up 1s ease-in-out forwards;
+}
+
+
+
+
+/* Base fade-in state (hidden) */
+[class*="fade-"] {
+  opacity: 0;
+  transition: all 0.8s ease-out;
+}
+
+.fade-up {
+  transform: translateY(100px);
+}
+
+.fade-down {
+  transform: translateY(-100px);
+}
+
+.fade-left {
+  transform: translateX(-100px);
+}
+
+.fade-right {
+  transform: translateX(100px);
+}
+
+/* Shown when in view */
+.show {
+  opacity: 1 !important;
+  transform: translateX(0) translateY(0) !important;
+}

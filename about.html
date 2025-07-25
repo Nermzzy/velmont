@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en" x-data="carousel()" x-init="init()" class="scroll-smooth">
+
+</html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us | Velmont</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js" defer></script>
+
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/static/style.css" />
+  <link rel="stylesheet" href="/static/animation.css" />
+  <link rel="stylesheet" href="/static/responsive.css" />
+</head>
+
+<body class="bg-white  text-gray-800 overflow-x-hidden font-display">
+
+  <!-- Navbar -->
+
+  <!-- Navbar -->
+  <nav class="bg-gray-100 relative shadow-md w-full z-50" x-data="{ open: false }">
+    <div class="container mx-auto px-4 py- flex justify-between items-center">
+      <a href="index.html" class="flex items-center">
+        <img src="/assets/logog.png" alt="Velmont" class="h-20 mr-2" />
+        <!-- <span class="text-2xl font-bold text-gr">Velmont</span> -->
+      </a>
+
+      <!-- Hamburger Icon -->
+      <button class="md:hidden flex flex-col justify-center items-center w-10 h-10" @click="open = !open"
+        aria-label="Toggle menu">
+        <span class="block w-7 h-1 bg-gray-900 mb-1 rounded transition-all duration-300"
+          :class="{'rotate-45 translate-y-2': open}"></span>
+        <span class="block w-6 h-1 bg-gray-900 mb-1 rounded transition-all duration-300"
+          :class="{'opacity-0': open}"></span>
+        <span class="block w-7 h-1 bg-gray-900 rounded transition-all duration-300"
+          :class="{'-rotate-45 -translate-y-2': open}"></span>
+      </button>
+
+      <!-- Desktop Menu -->
+      <ul class="hidden md:flex space-x-6 flex font-medium items-center w-full h-full justify-end">
+        <li><a href="index.html" class="transition active md-nav-item py-6 px-3">Home</a></li>
+        <li><a href="about.html" class="transition duration-300 md-nav-item py-6 px-3 active-m">About</a></li>
+        <li><a href="services.html" class="transition duration-200 md-nav-item py-6 px-3">Services</a></li>
+        <li><a href="contact.html" class="transition duration-200 md-nav-item py-6 px-3">Contact</a></li>
+        <li><a href="gallery.html" class="transition duration-200 md-nav-item py-6 px-3">Gallery</a></li>
+      </ul>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="absolute md:hidden top-full left-0 right-0" x-show="open"
+      x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 -translate-y-4"
+      x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-300"
+      x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 -translate-y-4"
+      @click.away="open = false">
+      <ul class="bg-white px-4 pb-6 py-4 space-y-2 shadow-md font-medium w-full z-50">
+        <li>
+          <a href="index.html" class="block w-full px-4 py-2 md-nav-item transition-all duration-300 rounded">
+            Home
+          </a>
+        </li>
+        <li>
+          <a href="about.html" class="block w-full px-4 py-2 md-nav-item transition-all duration-300 rounded active-m">
+            About
+          </a>
+        </li>
+        <li>
+          <a href="service.html" class="block w-full px-4 py-2 md-nav-item transition-all duration-300 rounded">
+            Services
+          </a>
+        </li>
+        <li>
+          <a href="contact.html" class="block w-full px-4 py-2 md-nav-item transition-all duration-300 rounded">
+            Contact
+          </a>
+        </li>
+        <li>
+          <a href="gallery.html" class="block w-full px-4 py-2 md-nav-item transition-all duration-300 rounded">
+            Gallery
+          </a>
+        </li>
+      </ul>
+    </div>
+
+  </nav>
+
+  <!-- FADE HERO CAROUSEL -->
+  <section class="relative w-screen h-[60vh] overflow-hidden select-none" x-ref="carousel" @mouseenter="pause()"
+    @mouseleave="resume()" @touchstart="handleTouchStart($event)" @touchmove="handleTouchMove($event)"
+    @touchend="handleTouchEnd()">
+
+    <!-- Slides -->
+    <template x-for="(slide, index) in slides" :key="slide.id">
+      <div class="absolute inset-0 bg-cover bg-center flex items-center justify-center transition-opacity duration-1000"
+        :style="`background-image: url('${slide.image}')`" :class="{
+          'opacity-100 z-20': currentIndex === index,
+          'opacity-0 z-10': currentIndex !== index
+        }">
+        <div class="text-white p-6 rounded text-center max-w-xl">
+          <h1 class="text-4xl md:text-6xl font-bold" x-text="slide.title"></h1>
+          <p class="mt-4 text-lg" x-text="slide.text"></p>
+        </div>
+      </div>
+    </template>
+
+    <!-- Arrows -->
+    <div class="absolute inset-0 flex items-center justify-between px-4 z-30">
+      <button @click="prev()" class="bg-black/50 hover:bg-black/70 p-2 rounded-full">
+        <svg class="w-6 h-6" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+      <button @click="next()" class="bg-black/50 hover:bg-black/70 p-2 rounded-full">
+        <svg class="w-6 h-6" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- ✅ Dots Indicator -->
+    <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-30 flex space-x-2">
+      <template x-for="(slide, index) in slides" :key="slide.id">
+        <button class="w-3 h-3 rounded-full bg-white/50 hover:bg-white" :class="{ 'bg-white': currentIndex === index }"
+          @click="goTo(index)"></button>
+      </template>
+    </div>
+  </section>
+
+
+  <!-- About Content -->
+  <section class="py-20 px-4 max-w-6xl mx-auto">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <h2 class="text-3xl font-bold text-green-600 mb-4">Who We Are</h2>
+        <p class="mb-4">
+          Velmont is a forward-thinking company focused on unlocking wealth through energy, mining, and mineral
+          resources. We specialize in oil, gas, gold, diamonds, lithium, and emerging sustainable assets. Our work spans
+          across Africa and beyond, delivering strategic value to communities and stakeholders.
+        </p>
+        <p class="">
+          With deep expertise, strong partnerships, and a vision for the future, we help drive industrial growth while
+          maintaining environmental and ethical integrity. At Velmont, we don’t just extract — we empower.
+        </p>
+      </div>
+      <div>
+        <img src="/assets/gallery2.jpg" alt="About Velmont" class="rounded-2xl shadow-lg w-full" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission / Vision -->
+  <section class="bg-gray-100 py-16 px-4">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-10">
+      <div>
+        <h3 class="text-2xl font-semibold text-green-600 mb-3">Our Mission</h3>
+        <p class="text-gray-700">
+          To responsibly harness natural resources to create long-term value, empowering people, and transforming
+          regions through innovation and sustainable development.
+        </p>
+      </div>
+      <div>
+        <h3 class="text-2xl font-semibold text-green-600 mb-3">Our Vision</h3>
+        <p class=" ">
+          To become Africa’s most trusted name in natural resource development, recognized globally for ethical
+          practices, advanced technologies, and community impact.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Values -->
+  <section class="py-16 px-4 max-w-6xl mx-auto container">
+    <h3 class="text-3xl font-bold text-green-600 mb-10">Our Core Values</h3>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div>
+        <i class="fas fa-handshake text-3xl text-green-600 mb-4"></i>
+        <h4 class="font-semibold text-lg mb-2">Integrity</h4>
+        <p class="text-gray-600">We uphold honesty, transparency, and accountability in every operation.</p>
+      </div>
+      <div>
+        <i class="fas fa-leaf text-3xl text-green-600 mb-4"></i>
+        <h4 class="font-semibold text-lg mb-2">Sustainability</h4>
+        <p class="text-gray-600">We prioritize the planet and future generations in all our resource activities.</p>
+      </div>
+      <div>
+        <i class="fas fa-lightbulb text-3xl text-green-600 mb-4"></i>
+        <h4 class="font-semibold text-lg mb-2">Innovation</h4>
+        <p class="text-gray-600">We embrace technology and new thinking to improve how we work and serve.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Insights -->
+  <!-- <section id="insights" class="py-20">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h3 class="text-3xl font-bold text-gray-900">Insights & Updates</h3>
+      <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <article class="bg-white p-6 rounded-lg shadow-lg">
+          <h4 class="text-xl font-semibold">Advancing Battery Storage Tech</h4>
+          <p class="mt-2 text-gray-600">Exploring the latest breakthroughs in energy storage for grid resilience.</p>
+          <a href="#" class="mt-4 inline-block text-emerald-600 font-medium">Read More →</a>
+        </article>
+        <article class="bg-white p-6 rounded-lg shadow-lg">
+          <h4 class="text-xl font-semibold">Smart Cities & Energy</h4>
+          <p class="mt-2 text-gray-600">How connected infrastructure is redefining efficient power usage in urban
+            environments.</p>
+          <a href="#" class="mt-4 inline-block text-emerald-600 font-medium">Discover More →</a>
+        </article>
+        <article class="bg-white p-6 rounded-lg shadow-lg">
+          <h4 class="text-xl font-semibold">Renewable Regulations 2025</h4>
+          <p class="mt-2 text-gray-600">An overview of new policies shaping sustainable energy adoption across the
+            region.</p>
+          <a href="#" class="mt-4 inline-block text-emerald-600 font-medium">Explore →</a>
+        </article>
+      </div>
+    </div>
+  </section> -->
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-200 py-6 text-center">
+    <div><i class="fas fa-envelope"></i> <span>info@velmont.com</span> | <i class="fas fa-phone"></i> <span>+234
+        7067619513</span></div>
+    <p>&copy; 2025 Velmont. All rights reserved.</p>
+  </footer>
+  <script src="app.js"></script>
+  <script src="animation.js"></script>
+  
+  <script>
+    function carousel() {
+    return {
+        currentIndex: 0,
+        interval: null,
+        autoSlide: true,
+        touchStartX: 0,
+        touchEndX: 0,
+        slides: [
+            {
+                id: 1,
+                image: "/assets/gallery9.jpg",
+                title: "Powering the Future",
+                text: "Sustainable energy solutions for tomorrow.",
+            },
+            {
+                id: 2,
+                image: image = "/assets/gallery2.jpg",
+                title: "Innovating Mining",
+                text: "Modern technologies for mineral exploration.",
+            },
+            {
+                id: 3,
+                image: image = "/assets/gallery10.jpg",
+                title: "Digital Transformation",
+                text: "Empowering industries with smart tech.",
+            },
+        ],
+        init() {
+            this.start();
+        },
+        start() {
+            this.interval = setInterval(() => {
+                if (this.autoSlide) this.next();
+            }, 10000);
+        },
+        pause() {
+            this.autoSlide = false;
+        },
+        resume() {
+            this.autoSlide = true;
+        },
+        next() {
+            this.currentIndex = (this.currentIndex + 1) % this.slides.length;
+        },
+        prev() {
+            this.currentIndex =
+                (this.currentIndex - 1 + this.slides.length) % this.slides.length;
+        },
+        goTo(index) {
+            this.currentIndex = index;
+        },
+        handleTouchStart(e) {
+            this.touchStartX = e.touches[0].clientX;
+        },
+        handleTouchMove(e) {
+            this.touchEndX = e.touches[0].clientX;
+        },
+        handleTouchEnd() {
+            const delta = this.touchEndX - this.touchStartX;
+            if (Math.abs(delta) > 50) {
+                delta > 0 ? this.prev() : this.next();
+            }
+        },
+    };
+}
+  </script>
+</body>
+
+</html>

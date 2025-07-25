@@ -1,0 +1,111 @@
+
+
+/* nav-items */
+  nav a.md-nav-item {
+    position:relative;
+    text-decoration: none;
+    padding: 8px 12px;
+  }
+
+  nav a.md-nav-item::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #00b052;
+    transition: width 0.3s ease-in-out;
+  }
+
+  nav a.md-nav-item:hover::after {
+    width: 100%;
+  }
+
+/* Active directory */
+.active-m{
+  color: white;
+  background-color: #00b052;
+  text-align: center;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700; /* medium */
+  border-radius: 5px;
+  
+}
+.herobg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+
+.hover-effect:hover {
+  background-color: #5de969;
+  color: #ffffff;
+  box-shadow: #3c3939 0px 0px 10px;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.box-shadow:hover{
+    border:border-box 2px solid green;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    /* background-color: #5de969; */
+    
+}
+
+div img{
+  width: 100%;
+  height: 22rem;
+  /* object-fit: cover; */
+  /* position: relative;
+  top: 0px;
+  image-resolution: from-image; */
+}
+
+
+/* custom underline */
+
+.underline-custom {
+  position: relative;
+}
+
+.underline-custom::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px; /* adjust as needed */
+  width: 100px;
+  height: 3px;
+  background-color: rgb(204, 138, 17); /* or green or whatever you want */
+}
+
+
+/* Hover Effects for gallery */
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+.hover-zoom img {
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.hover-zoom:hover img {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+.card-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.group:hover .card-overlay {
+  opacity: 1;
+}
